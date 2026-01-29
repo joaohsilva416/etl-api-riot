@@ -34,7 +34,7 @@ class RiotClient():
         
         return value
     
-    # Função para pegar os id's das últimas 20 partidas
+    # Função para pegar os id's das partidas
     def get_matches(self, puuid, count=20):
         # Lista vazia onde vai ser armazenado os ids das partidas
         endpoint = f'/lol/match/v5/matches/by-puuid/{puuid}/ids' # Define o endpoint
