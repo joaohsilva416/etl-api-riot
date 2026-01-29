@@ -33,3 +33,15 @@ class RiotClient():
         valor = self._make_request(endpoint)['puuid'] # Pega apenas o puuid
         
         return valor
+    
+if __name__ == '__main__':
+    # Instancia o cliente
+    client = RiotClient()
+
+    # Imprime apenas o puuid
+    try:
+        meu_puuid = client.get_puuid("kojiii", "00000")
+        print(f"Puuid: {meu_puuid}")
+    # Imprime erro caso aconteça
+    except Exception as e:
+        print(f"Erro {e}")
