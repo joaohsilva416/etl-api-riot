@@ -26,3 +26,10 @@ class RiotClient():
             raise Exception(f"{response.status_code} - {data}")
         
         return data
+    
+    # Função para pegar o puuid
+    def get_puuid(self, game_name, tag_line):
+        endpoint = f'/riot/account/v1/accounts/by-riot-id/{game_name}/{tag_line}' # Define o endpoint
+        valor = self._make_request(endpoint)['puuid'] # Pega apenas o puuid
+        
+        return valor
