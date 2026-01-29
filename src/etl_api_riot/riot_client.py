@@ -14,4 +14,15 @@ class RiotClient():
              "X-Riot-Token": self.api_key # Cria o header
         }
     
-    
+    # Função para pegar o site
+    def _make_request(self, endpoint):
+        url_completa = f'{self.url_base}{endpoint}' # Concatena url base com endpoint
+        response = requests.get(url_completa, headers=self.headers) # Requisição do site
+        data = response.json() # Armazena a resposta em um json
+
+        # Verifica se o status code é diferente de 200
+        if response.status_code != 200:
+            # Interrompe o código caso erro for detectado
+            raise Exception(f"{response.status_code} - {data}")
+        
+        return data
