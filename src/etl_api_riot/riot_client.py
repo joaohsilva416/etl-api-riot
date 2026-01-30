@@ -77,6 +77,12 @@ if __name__ == '__main__':
             time.sleep(1)
         print(f"Sucesso! Baixados detalhes de {len(results)} partidas.")
 
+        print("Salvando arquivo Json...")
+
+        # Exporta lista results em arquivo json
+        with open('matches_raw.json', 'w', encoding='utf-8') as f:
+            json.dump(results, f, indent=4, ensure_ascii=False)
+
     # Imprime erro caso aconteça
     except Exception as e:
         print(f"Erro {e}")
