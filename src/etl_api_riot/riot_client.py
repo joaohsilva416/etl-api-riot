@@ -3,6 +3,7 @@ import requests
 from dotenv import load_dotenv
 import os
 import time
+import json
 
 class RiotClient():
     def __init__(self):
