@@ -50,39 +50,37 @@ class RiotClient():
 
         return value
     
-if __name__ == '__main__':
-    # Instancia o cliente
+def main():
     client = RiotClient()
 
     try:
+        # Pegar PUUID
         my_puuid = client.get_puuid("kojiii", "00000")
-        print(f"Puuid: {my_puuid}")
 
-        matches_id = client.get_matches(my_puuid)
-        print(f"Lista dos id's: {matches_id}")
+        # Pegar Lista de Partidas
+        matches_ids = client.get_matches(my_puuid)
 
-        # Lista para armazenar os resultados
+        # 3. Loop de Download
         results = []
 
         print("Iniciando download das partidas...")
-        # Loop para percorrer a lista dos id's
-        for match_id in matches_id:
-            # Pegar os detalhes das partidas
+        
+        for match_id in matches_ids:
             dados = client.get_match_details(match_id)
-
-            # Adiciona a lista
             results.append(dados)
+            time.sleep(1) # Respeitando a API
+            
+        print(f"Sucesso! Detalhes baixados.")
 
-            # Pausa a execução por 1 segundo para evitar erro
-            time.sleep(1)
-        print(f"Sucesso! Baixados detalhes de {len(results)} partidas.")
-
+        # 4. Salvar Arquivo
         print("Salvando arquivo Json...")
-
-        # Exporta lista results em arquivo json
         with open('matches_raw.json', 'w', encoding='utf-8') as f:
             json.dump(results, f, indent=4, ensure_ascii=False)
+            
+        print("Arquivo salvo com sucesso.")
 
-    # Imprime erro caso aconteça
     except Exception as e:
-        print(f"Erro {e}")
+        print(f"Erro no processo: {e}")
+
+if __name__ == '__main__':
+    main()
