@@ -5,11 +5,11 @@ import os
 import time
 import json
 
+# Carrega as configurações do arquivo .env
+load_dotenv()
+
 class RiotClient():
     def __init__(self):
-        # Carrega as configurações do arquivo .env
-        load_dotenv()
-
         self.api_key = os.getenv("RIOT_API_KEY") # Lendo a api key
         self.url_base = "https://americas.api.riotgames.com" # Define a url base
         self.headers = {
@@ -54,7 +54,6 @@ if __name__ == '__main__':
     # Instancia o cliente
     client = RiotClient()
 
-    # Imprime apenas o puuid
     try:
         my_puuid = client.get_puuid("kojiii", "00000")
         print(f"Puuid: {my_puuid}")
