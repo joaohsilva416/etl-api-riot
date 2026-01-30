@@ -2,6 +2,7 @@
 import requests
 from dotenv import load_dotenv
 import os
+import time
 
 class RiotClient():
     def __init__(self):
@@ -36,9 +37,15 @@ class RiotClient():
     
     # Função para pegar os id's das partidas
     def get_matches(self, puuid, count=20):
-        # Lista vazia onde vai ser armazenado os ids das partidas
         endpoint = f'/lol/match/v5/matches/by-puuid/{puuid}/ids' # Define o endpoint
         value = self._make_request(endpoint, params={"count": count}) # Pega as 20 últimas id's
+
+        return value
+    
+    # Função para pegar as informações das partidas
+    def get_match_details(self, match_id):
+        endpoint = f'/lol/match/v5/matches/{match_id}'
+        value = self._make_request(endpoint)
 
         return value
     
@@ -51,8 +58,25 @@ if __name__ == '__main__':
         my_puuid = client.get_puuid("kojiii", "00000")
         print(f"Puuid: {my_puuid}")
 
-        my_matches = client.get_matches(my_puuid)
-        print(f"Lista das partidas: {my_matches}")
+        matches_id = client.get_matches(my_puuid)
+        print(f"Lista dos id's: {matches_id}")
+
+        # Lista para armazenar os resultados
+        results = []
+
+        print("Iniciando download das partidas...")
+        # Loop para percorrer a lista dos id's
+        for match_id in matches_id:
+            # Pegar os detalhes das partidas
+            dados = client.get_match_details(match_id)
+
+            # Adiciona a lista
+            results.append(dados)
+
+            # Pausa a execução por 1 segundo para evitar erro
+            time.sleep(1)
+        print(f"Sucesso! Baixados detalhes de {len(results)} partidas.")
+
     # Imprime erro caso aconteça
     except Exception as e:
         print(f"Erro {e}")
