@@ -9,7 +9,7 @@ with source as (
 -- inserir transformações
 renamed as (
     select
-        source.MATCH_ID as id_partida,
+        MATCH_DATA:info:gameId::INTEGER as id_partida,
         player.value:puuid::VARCHAR as id_jogador,
         player.value:riotIdGameName::VARCHAR as nome_jogador,
         player.value:championName::VARCHAR as nome_campeao,
