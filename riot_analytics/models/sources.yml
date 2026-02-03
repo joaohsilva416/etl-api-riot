@@ -1,0 +1,19 @@
+versions: 2
+
+sources:
+    name: RIOT_DB
+    schema: PUBLIC
+    tables:
+      name: MATCHES_RAW
+      description: "Tabela de partidas de League of Legends"
+      columns:
+        name: MATCH_ID
+        description: "ID único da partida"
+        tests:
+          unique
+        name: MATCH_DATA
+        description: "Data da partida"
+        name: CREATED_AT
+        description: "DATA/HORA que o script Python rodou e inseriu a informação na tabela"
+        
+  
