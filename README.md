@@ -60,6 +60,11 @@ Instale o Poetry via pipx (de preferência) e configure as dependências do proj
 pipx install poetry
 poetry install
 ```
+Configure o dbt e instale as dependências usando:
+```bash
+poetry run dbt deps --project-dir riot_analytics
+```
+E certifique-se de que o Snowflake esteja configurado para aceitar conexões do dbt e da aplicação Python.
 
 ### 3. Configurar Variáveis de Ambiente
 Crie um arquivo `.env` na raiz do projeto com suas credenciais:
