@@ -50,7 +50,7 @@ A API da Riot possui limites estritos de requisições por minuto.
 ### 1. Clonar o Repositório
 Abra seu terminal e clone o projeto para sua máquina local:
 ```bash
-git clone [https://github.com/joaohsilva416/etl-api-riot.git](https://github.com/joaohsilva416/etl-api-riot.git)
+git clone https://github.com/joaohsilva416/etl-api-riot.git
 cd etl-api-riot
 ```
 
